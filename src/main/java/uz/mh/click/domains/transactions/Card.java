@@ -1,12 +1,10 @@
 package uz.mh.click.domains.transactions;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import uz.mh.click.domains.Auditable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity(name = "cards")
@@ -14,7 +12,8 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Schema(name = "transactions")
+
 public class Card extends Auditable {
 
     @Column(nullable = false, length = 16)
@@ -28,6 +27,14 @@ public class Card extends Auditable {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private CardType cardType;
+    @ManyToOne
+    private Bank bank;
+
+    private boolean isBlocked;
+
+    private boolean isBalanceSeeable;
+
+    private boolean isCardNumberSeeable;
 
     public enum CardType {
         UZ_CARD,

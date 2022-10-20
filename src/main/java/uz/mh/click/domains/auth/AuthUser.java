@@ -1,5 +1,6 @@
 package uz.mh.click.domains.auth;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import uz.mh.click.domains.Auditable;
 
@@ -11,11 +12,12 @@ import java.util.Collection;
 @Setter
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
-@Entity
+@Schema(name = "auth")
+
+@Entity(name = "users")
 public class AuthUser extends Auditable {
 
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     private String phoneNumber;
     private String firstname;
 
@@ -42,21 +44,26 @@ public class AuthUser extends Auditable {
             joinColumns = @JoinColumn(name = "auth_user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "auth_role_id", referencedColumnName = "id"))
     private Collection<AuthRole> roles;
-
     @Builder(builderMethodName = "childBuilder")
-    public AuthUser(Long id, boolean deleted, LocalDateTime createdAt, Long createdBy, LocalDateTime updatedAt, Long updatedBy, String firstname, String lastname, LocalDate birthDate, String password, LocalDateTime lastLoggedTime, Status status, Collection<AuthRole> roles) {
-        super(id, deleted, createdAt, createdBy, updatedAt, updatedBy);
+    public AuthUser(Long id, boolean deleted, LocalDateTime createdAt, LocalDateTime updatedAt, String phoneNumber, String firstname, String lastname, String middleName, LocalDate birthDate, String currentPassword, String newPassword, LocalDateTime lastLoggedTime, Status status, Collection<AuthRole> roles) {
+        super(id, deleted, createdAt, updatedAt);
+        this.phoneNumber = phoneNumber;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.middleName = middleName;
         this.birthDate = birthDate;
-        this.currentPassword = password;
+        this.currentPassword = currentPassword;
+        this.newPassword = newPassword;
         this.lastLoggedTime = lastLoggedTime;
         this.status = status;
         this.roles = roles;
     }
 
+    public AuthUser() {
+    }
+
     public enum Status {
-        ACTIVE, NON_ACTIVE,ACCOUNT_EXPIRED,CREDENTIALS_EXPIRED;
+        ACTIVE, NON_ACTIVE, ACCOUNT_EXPIRED, CREDENTIALS_EXPIRED;
     }
 
     public boolean isActive(Status s) {

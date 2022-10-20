@@ -1,11 +1,10 @@
 package uz.mh.click.domains.auth;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
+import uz.mh.click.domains.fileStorage.Uploads;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Builder
 @Getter
@@ -14,15 +13,20 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Entity
 @Table(name = "user_profiles")
+@Schema(name = "auth")
+
 public class UserProfile{
 
     @Id
     @Column(unique = true,nullable = false)
     private Long userId;
 
-    @Column(nullable = false)
     private String firstname;
 
-    @Column(nullable = false)
     private String lastname;
+
+    private String middleName;
+
+    @OneToOne
+    private Uploads picture;
 }
