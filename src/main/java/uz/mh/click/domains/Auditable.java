@@ -25,15 +25,15 @@ public class Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, columnDefinition = "smallint default")
+    @Column(columnDefinition = "smallint default 0", nullable = false)
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean deleted;
 
-    @CreationTimestamp
-    @CreatedDate
-    @Column(nullable = false, columnDefinition = "timestamp default current_timestamp", unique = false)
-    private LocalDateTime createdAt;
 
+    @CreatedDate
+    @CreationTimestamp
+    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    private LocalDateTime createdAt;
     @LastModifiedDate
     private LocalDateTime updatedAt;
 

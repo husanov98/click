@@ -52,7 +52,7 @@ public record UserDetails(AuthUser authUser) implements org.springframework.secu
 
     @Override
     public boolean isEnabled() {
-        return authUser.isDeleted();
+        return authUser.isActive(AuthUser.Status.NON_ACTIVE);
     }
 
     private final static Function<String, SimpleGrantedAuthority> authority = SimpleGrantedAuthority::new;

@@ -1,6 +1,6 @@
 package uz.mh.click.domains.auth;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+//import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -13,7 +13,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Schema(name = "auth")
+//@Schema(name = "auth")
 
 public class AuthRole implements GrantedAuthority {
     @Id

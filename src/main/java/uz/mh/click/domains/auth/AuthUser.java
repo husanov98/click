@@ -1,6 +1,7 @@
 package uz.mh.click.domains.auth;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+//import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.*;
 import uz.mh.click.domains.Auditable;
 
@@ -12,9 +13,9 @@ import java.util.Collection;
 @Setter
 @Getter
 @AllArgsConstructor
-@Schema(name = "auth")
+//@Schema(name = "auth")
 
-@Entity(name = "users")
+@Entity(name = "auth_user")
 public class AuthUser extends Auditable {
 
     @Column(nullable = false, unique = true)
@@ -26,6 +27,8 @@ public class AuthUser extends Auditable {
     private String middleName;
 
     private LocalDate birthDate;
+
+    private int loginTryCount;
 
     @Column(nullable = false)
     private String currentPassword;
@@ -44,8 +47,9 @@ public class AuthUser extends Auditable {
             joinColumns = @JoinColumn(name = "auth_user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "auth_role_id", referencedColumnName = "id"))
     private Collection<AuthRole> roles;
+
     @Builder(builderMethodName = "childBuilder")
-    public AuthUser(Long id, boolean deleted, LocalDateTime createdAt, LocalDateTime updatedAt, String phoneNumber, String firstname, String lastname, String middleName, LocalDate birthDate, String currentPassword, String newPassword, LocalDateTime lastLoggedTime, Status status, Collection<AuthRole> roles) {
+    public AuthUser(Long id, boolean deleted, LocalDateTime createdAt, LocalDateTime updatedAt, String phoneNumber, String firstname, String lastname, String middleName, LocalDate birthDate, String currentPassword, String newPassword, LocalDateTime lastLoggedTime, byte loginTryCount, Status status, Collection<AuthRole> roles) {
         super(id, deleted, createdAt, updatedAt);
         this.phoneNumber = phoneNumber;
         this.firstname = firstname;
@@ -55,6 +59,7 @@ public class AuthUser extends Auditable {
         this.currentPassword = currentPassword;
         this.newPassword = newPassword;
         this.lastLoggedTime = lastLoggedTime;
+        this.loginTryCount = loginTryCount;
         this.status = status;
         this.roles = roles;
     }

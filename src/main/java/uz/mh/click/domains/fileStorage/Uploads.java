@@ -1,6 +1,6 @@
 package uz.mh.click.domains.fileStorage;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+//import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import uz.mh.click.domains.Auditable;
 
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @Entity
-@Schema(name = "file_storages")
+
 
 public class Uploads extends Auditable {
 

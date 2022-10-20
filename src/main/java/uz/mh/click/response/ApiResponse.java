@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
-import uz.mh.click.ApiErrorResponse;
+import uz.mh.click.dtos.ApiErrorResponse;
 
 import java.io.Serializable;
 

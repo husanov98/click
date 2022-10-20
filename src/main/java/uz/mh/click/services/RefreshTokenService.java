@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import uz.mh.click.configs.security.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetails;
 import uz.mh.click.utils.JwtUtils;
 
 import java.time.temporal.ChronoUnit;
@@ -40,6 +41,7 @@ public class RefreshTokenService implements TokenService {
                 timeUnit
         );
     }
+
 
     @Override
     public boolean isValid(String token) {

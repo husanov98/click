@@ -1,6 +1,6 @@
 package uz.mh.click.domains.transactions;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+//import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import uz.mh.click.domains.Auditable;
 
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Schema(name = "transactions")
+//@Schema(name = "transactions")
 
 public class Report extends Auditable {
 

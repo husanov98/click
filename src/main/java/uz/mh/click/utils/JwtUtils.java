@@ -1,9 +1,11 @@
 package uz.mh.click.utils;
 
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
+import javax.crypto.SecretKey;
 import java.time.Clock;
 import java.time.Instant;
 import java.time.temporal.TemporalUnit;
@@ -14,7 +16,7 @@ import java.util.function.Function;
 @Component
 public class JwtUtils {
 
-    public static final SignatureAlgorithm algorithm = SignatureAlgorithm.ES256;
+    public static final SignatureAlgorithm algorithm = SignatureAlgorithm.HS512;
 
     public boolean isValid(String token, String secret) {
         String subject = getSubject(token, secret);
@@ -61,6 +63,9 @@ public class JwtUtils {
                 .setSubject(subject)
                 .setIssuedAt(Date.from(now))
                 .setExpiration(Date.from(now.plus(amountToAdd, unit)))
-                .signWith(algorithm, secret);
+                .signWith(getKey(),algorithm);
+    }
+    private SecretKey getKey(){
+        return Keys.secretKeyFor(algorithm);
     }
 }

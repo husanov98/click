@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import uz.mh.click.controller.ApiController;
 import uz.mh.click.domains.auth.AuthUser;
+import uz.mh.click.dtos.CreateProfileDto;
 import uz.mh.click.dtos.JwtResponse;
 import uz.mh.click.dtos.LoginRequest;
 import uz.mh.click.dtos.RefreshTokenRequest;
@@ -35,5 +36,10 @@ public class AuthUserController extends ApiController<AuthUserService> {
     @PostMapping(value = PATH + "/auth/register")
     public ApiResponse<AuthUser> register(@Valid @RequestBody LoginRequest request) {
         return new ApiResponse<>(service.register(request));
+    }
+
+    @PostMapping(value = PATH + "/auth/profile")
+    public ApiResponse<CreateProfileDto> fillProfile(CreateProfileDto dto) {
+        return new ApiResponse<>(service.fillProfile(dto));
     }
 }
