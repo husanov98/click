@@ -13,7 +13,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Builder
+//@Builder
 @Getter
 @Setter
 @NoArgsConstructor

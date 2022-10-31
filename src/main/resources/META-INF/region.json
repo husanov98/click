@@ -1,0 +1,9 @@
+{
+  "regions": [
+    {
+      "name":"region",
+      "type": "uz.mh.click.enums",
+      "enum": ["ANDIJAN","FERGANA","NAMANGAN","TASHKENT"]
+    }
+  ]
+}

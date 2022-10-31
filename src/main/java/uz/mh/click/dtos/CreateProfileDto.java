@@ -1,6 +1,8 @@
 package uz.mh.click.dtos;
 
 import lombok.*;
+import org.springdoc.api.annotations.ParameterObject;
+import uz.mh.click.enums.Region;
 
 import java.util.Date;
 @AllArgsConstructor
@@ -8,9 +10,8 @@ import java.util.Date;
 @Getter
 @Setter
 @Builder
+@ParameterObject
 public class CreateProfileDto {
-
-    private String phoneNumber;
 
     private String firstname;
 
@@ -19,4 +20,6 @@ public class CreateProfileDto {
     private String middleName;
 
     private Date birthDate;
+
+    private Region region;
 }

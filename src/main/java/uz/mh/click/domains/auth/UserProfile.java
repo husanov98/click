@@ -1,8 +1,10 @@
 package uz.mh.click.domains.auth;
 
 //import io.swagger.v3.oas.annotations.media.Schema;
+
 import lombok.*;
 import uz.mh.click.domains.fileStorage.Uploads;
+import uz.mh.click.enums.Region;
 
 import javax.persistence.*;
 
@@ -15,10 +17,10 @@ import javax.persistence.*;
 @Table(name = "user_profiles")
 //@Schema(name = "auth")
 
-public class UserProfile{
+public class UserProfile {
 
     @Id
-    @Column(unique = true,nullable = false)
+    @Column(unique = true, nullable = false)
     private Long userId;
 
     private String firstname;
@@ -29,4 +31,6 @@ public class UserProfile{
 
     @OneToOne
     private Uploads picture;
+
+    private Region region;
 }

@@ -16,6 +16,7 @@ import java.util.Collection;
 //@Schema(name = "auth")
 
 @Entity(name = "auth_user")
+@Builder
 public class AuthUser extends Auditable {
 
     @Column(nullable = false, unique = true)

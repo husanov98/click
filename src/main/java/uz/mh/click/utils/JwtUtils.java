@@ -16,7 +16,7 @@ import java.util.function.Function;
 @Component
 public class JwtUtils {
 
-    public static final SignatureAlgorithm algorithm = SignatureAlgorithm.HS512;
+    public static final SignatureAlgorithm algorithm = SignatureAlgorithm.HS256;
 
     public boolean isValid(String token, String secret) {
         String subject = getSubject(token, secret);
@@ -59,6 +59,7 @@ public class JwtUtils {
                                   @NonNull final String secret,
                                   int amountToAdd, TemporalUnit unit) {
         Instant now = Instant.now(Clock.systemDefaultZone());
+
         return Jwts.builder()
                 .setSubject(subject)
                 .setIssuedAt(Date.from(now))
